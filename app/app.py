@@ -403,7 +403,7 @@ h1, h2, h3, h4 {
 @st.cache_resource
 
 def load_model():
-    model_path = os.path.join(os.path.dirname(__file__), "model.pkl")
+    model_path = "app/model.pkl"
     try:
         with open(model_path, "rb") as f:
             return pickle.load(f)
