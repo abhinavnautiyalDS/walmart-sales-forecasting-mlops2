@@ -401,7 +401,7 @@ h1, h2, h3, h4 {
 @st.cache_resource
 def load_model():
     try:
-        with open("app/model.pkl", "rb") as f:
+        with open("app/model1.pkl", "rb") as f:
             return pickle.load(f)
     except FileNotFoundError:
         return None
