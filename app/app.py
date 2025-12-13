@@ -1,5 +1,4 @@
 import streamlit as st
-import os
 import pandas as pd
 import numpy as np
 import pickle
@@ -14,7 +13,6 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="expanded"
 )
-
 # Custom CSS
 st.markdown("""
 <style>
@@ -401,18 +399,14 @@ h1, h2, h3, h4 {
 # Load Model
 # ---------------------------
 @st.cache_resource
-
 def load_model():
-    model_path = os.path.join(os.path.dirname(__file__), "model.pkl")
     try:
-        with open(model_path, "rb") as f:
+        with open("app/model.pkl", "rb") as f:
             return pickle.load(f)
     except FileNotFoundError:
-        st.error(f"Model file not found at: {model_path}")
         return None
 
 model = load_model()
-
 
 # ---------------------------
 # Feature Engineering
