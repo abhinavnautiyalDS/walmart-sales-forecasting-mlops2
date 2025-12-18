@@ -1,135 +1,156 @@
-# **Walmart Sales Forecasting Pipeline**
-### End-to-End Machine Learning System using Machine Learning and MLOps
+# **Walmart Retail Demand Forecasting System**
+### Building a Production-Ready Walmart Sales Forecasting Pipeline using Machine Learning & MLOps
 
 ---
 
-## **Project Overview**
-### From raw retail data to a deployed forecasting system
+## **Introduction**
+### Why this project exists
 
-This repository contains an end-to-end machine learning project focused on forecasting Walmart’s weekly sales at the store–department level.
+Machine learning projects often look impressive on the surface — a trained model, a good score, maybe even a deployed demo. But what usually remains hidden is **how decisions were made**, how experiments were tracked, and whether the system can actually be used outside a notebook.
 
-The project goes beyond model training and focuses on building a **reliable, reproducible, and deployable machine learning system**.
+This project focuses on building a **real-world retail demand forecasting system** using Walmart sales data. The goal was not just to predict weekly sales, but to design an **end-to-end machine learning pipeline** that is reproducible, explainable, and deployable.
 
 ---
 
-## **Project Goal**
-### Building a usable ML system, not just a model
+## **Project Objective**
+### From model training to system building
 
-The primary goal of this project was to move from:
+The main objective of this project was to move from:
 
-**“I trained a model” → “I built a machine learning system”**
+**“I trained a machine learning model”**  
+to  
+**“I built a machine learning system.”**
 
 This includes:
-- Understanding retail demand behaviour
-- Systematic experimentation instead of random trials
-- Tracking experiments using MLflow
-- Packaging and deploying the solution
+- Understanding how retail sales data behaves
+- Making modelling decisions based on data insights
+- Tracking experiments systematically
+- Ensuring reproducibility using MLOps tools
+- Deploying the model as a usable application
 
 ---
 
-## **Data Gathering**
-### Retail sales data sourced from Kaggle
+## **Data Source**
+### Walmart sales dataset from Kaggle
 
-The dataset was collected from a publicly available **Walmart sales dataset on Kaggle**.
+The dataset used in this project was sourced from **Kaggle** and contains historical Walmart sales data.
 
-It includes:
-- Weekly sales data
+The data includes:
+- Weekly sales values (target variable)
 - Store and department identifiers
 - Holiday indicators
-- Macroeconomic variables (CPI, unemployment, fuel price, temperature)
+- Macroeconomic features such as:
+  - CPI
+  - Unemployment rate
+  - Fuel price
+  - Temperature
+- Promotional markdown information
+
+This dataset closely resembles real retail demand data with seasonality and external economic effects.
 
 ---
 
 ## **Data Preprocessing**
-### Cleaning while preserving business meaning
+### Cleaning with business context in mind
 
-Data preprocessing focused on validation and consistency rather than aggressive cleaning.
+Data preprocessing was performed carefully to **preserve business meaning** rather than blindly cleaning the data.
 
-Steps performed:
-- Merging multiple datasets into a single table
-- Handling missing values carefully
+Key preprocessing steps:
+- Merging multiple datasets (`train`, `stores`, `features`) into a single table
+- Handling missing values based on domain understanding
 - Removing duplicate records
-- Fixing data types (especially dates)
-- Preserving holiday and promotion-driven spikes
+- Correcting data types, especially date fields
+- Preserving extreme sales values caused by holidays and promotions
 
-Missing markdown values were treated as **no discount applied**, not missing data.
+### **Important Insight**
+Missing values in markdown columns do not indicate missing data — they indicate **no discount applied**. These values were filled with zero instead of being dropped or averaged.
 
 ---
 
 ## **Exploratory Data Analysis (EDA)**
 ### Understanding sales behaviour before modelling
 
-Key insights from EDA:
-- Weekly sales show heavy right skew
-- Strong seasonality across the year
-- Holiday weeks consistently produce sales spikes
-- Macroeconomic variables provide contextual signals
-- Some departments dominate total sales contribution
+EDA was used to understand the underlying patterns in the data.
 
-These insights guided feature engineering and model selection.
+Key findings:
+- Weekly sales distribution is heavily right-skewed
+- Strong seasonality exists across the year
+- Holiday weeks consistently produce large sales spikes
+- Macroeconomic variables act as contextual signals rather than direct predictors
+- A small number of departments contribute disproportionately to total sales
+
+These insights directly influenced feature engineering and model selection.
 
 ---
 
 ## **Feature Engineering**
-### Features driven by data understanding and logic
+### Translating business behaviour into features
+
+Feature engineering was driven by **data understanding and retail logic**, not feature quantity.
 
 Engineered features include:
-- Time-based features (week, month, year, season)
-- Lag features for previous weeks’ sales
-- Rolling averages to capture trends
-- Categorical encodings for stores and departments
-- Promotion and markdown-related features
-- Economic change indicators (CPI, unemployment, fuel)
+- **Temporal features**: week, month, year, season
+- **Lag features**: previous week and two-week lag sales
+- **Rolling features**: moving averages to capture trends
+- **Categorical features**: store, department, holiday
+- **Promotion features**: total markdown, markdown intensity
+- **Economic indicators**: CPI change, unemployment change, fuel price change
 
-Each feature was added with clear justification.
+Each feature was added with a clear justification related to retail demand behaviour.
 
 ---
 
-## **MLflow Experimentation**
-### Structured and reproducible model experimentation
+## **Modeling & MLflow Experimentation**
+### Structured experimentation using MLOps
+
+Instead of running untracked experiments, **MLflow** was used to manage the modelling process.
 
 MLflow was used for:
-- Tracking preprocessing strategies (scaling and encoding)
-- Comparing regression models
-- Logging parameters, metrics, and artifacts
-- Ensuring reproducibility across runs
+- Tracking preprocessing strategies (scaling, encoding)
+- Comparing different regression algorithms
+- Logging parameters, metrics, and model artifacts
+- Maintaining reproducibility across experiments
 
-Models were evaluated using:
-- RMSE
-- MAE
-- R²
+### **Evaluation Strategy**
+- Time-based train–validation split to prevent data leakage
+- Metrics used:
+  - RMSE
+  - MAE
+  - R² score
 
-Time-aware validation was used to avoid data leakage.
+This approach ensured fair and reliable model comparisons.
 
 ---
 
 ## **Docker Containerisation**
-### Making the system portable and reproducible
+### Ensuring reproducibility across environments
 
-The entire application was containerised using **Docker**.
+The complete application was containerised using **Docker**.
 
 The Docker image includes:
-- Preprocessing pipeline
-- Trained ML model
+- Data preprocessing pipeline
+- Trained machine learning model
 - Streamlit application
 - All required dependencies
 
-This ensures consistent behaviour across environments.
+This ensures that the project runs consistently across different machines and platforms.
 
 ---
 
 ## **Deployment**
-### Streamlit application deployed on Hugging Face
+### Streamlit application on Hugging Face Spaces
 
-The final model was deployed as an interactive **Streamlit application** on **Hugging Face Spaces**.
+The final model was deployed as an interactive **Streamlit web application** hosted on **Hugging Face Spaces**.
 
-The app allows:
-- User input of features
-- Real-time weekly sales prediction
-- Consistent preprocessing during inference
+The deployed app allows users to:
+- Input relevant features
+- Get real-time weekly sales predictions
+- Interact with the model without running code locally
+
+Deployment helped uncover practical issues that are not visible during notebook experimentation.
 
 ---
 
-## **Repository Structure**
-### Project file organisation
+## **Project Structure**
+### Repository layout
 
