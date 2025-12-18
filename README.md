@@ -180,5 +180,24 @@ Deployment helped uncover practical issues that are not visible during notebook 
 ---
 
 ## **Project Structure**
-### Repository layout
 
+## **Key Learnings**
+
+What this project taught me
+
+- Data understanding matters more than algorithms
+- Feature engineering is critical for real-world ML
+- Experiment tracking is essential
+- Deployment is part of the ML lifecycle
+
+Machine learning becomes real only when it leaves the notebook.
+
+## **Related Blog**
+
+Detailed explanation of this project
+https://medium.com/@abhinavnautiyal96/how-i-built-a-scalable-walmart-sales-forecasting-pipeline-using-machine-learning-and-mlops-2239f05c9eab
+
+## **Acknowledgements**
+
+Thanks for taking the time to explore this project.
+Feedback and suggestions are always welcome.
