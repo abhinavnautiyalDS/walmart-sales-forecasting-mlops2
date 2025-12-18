@@ -1,4 +1,6 @@
 # **Walmart Retail Demand Forecasting System**
+![12660749993_3167dcef09_k](https://github.com/user-attachments/assets/68a3f328-2027-47b1-a223-fb45906aebec)
+
 ### Building a Production-Ready Walmart Sales Forecasting Pipeline using Machine Learning & MLOps
 
 ---
@@ -74,10 +76,19 @@ EDA was used to understand the underlying patterns in the data.
 
 Key findings:
 - Weekly sales distribution is heavily right-skewed
+<img width="1948" height="848" alt="download (1)" src="https://github.com/user-attachments/assets/746a1cf1-f84b-463b-ae3c-b4094879ba18" />
+
 - Strong seasonality exists across the year
+<img width="1948" height="848" alt="download 2" src="https://github.com/user-attachments/assets/a004384c-87c3-4ee9-97a0-5a8305993668" />
+
 - Holiday weeks consistently produce large sales spikes
+<img width="1697" height="824" alt="download 3" src="https://github.com/user-attachments/assets/eb3559ab-89af-4794-a331-229c46b59414" />
+
 - Macroeconomic variables act as contextual signals rather than direct predictors
-- A small number of departments contribute disproportionately to total sales
+<img width="1948" height="847" alt="download 7" src="https://github.com/user-attachments/assets/7311dc2c-369f-4afe-8a04-7f0c52948ff8" />
+<img width="1711" height="824" alt="download 8" src="https://github.com/user-attachments/assets/f3fb7eee-5998-462f-901d-1f167b302d70" />
+<img width="1711" height="824" alt="download 9" src="https://github.com/user-attachments/assets/3b39b48f-476b-4669-91fa-faf7b761a8e3" />
+
 
 These insights directly influenced feature engineering and model selection.
 
@@ -117,6 +128,7 @@ MLflow was used for:
   - RMSE
   - MAE
   - R² score
+<img width="1550" height="543" alt="Screenshot 2025-12-17 230543" src="https://github.com/user-attachments/assets/44d22c27-03e2-48c9-93ce-004f903f5d35" />
 
 This approach ensured fair and reliable model comparisons.
 
@@ -143,9 +155,25 @@ This ensures that the project runs consistently across different machines and pl
 The final model was deployed as an interactive **Streamlit web application** hosted on **Hugging Face Spaces**.
 
 The deployed app allows users to:
-- Input relevant features
-- Get real-time weekly sales predictions
+- Input csv file 
+- Get real-time weekly sales predictions, along with insights and can perform future forcasting
 - Interact with the model without running code locally
+![App demo (online-video-cutter com) (online-video-cutter com) (2)](https://github.com/user-attachments/assets/c88a0381-c552-4089-bb6f-a088417e9042)
+
+├── data/
+│   ├── scripts/
+          
+│   └── dataset/
+├── notebooks/
+├── src/
+│   ├── preprocessing.py
+│   ├── train.py
+│   ├── evaluate.py
+│   └── app.py
+├── mlflow/
+├── Dockerfile
+├── requirements.txt
+└── README.md
 
 Deployment helped uncover practical issues that are not visible during notebook experimentation.
 
