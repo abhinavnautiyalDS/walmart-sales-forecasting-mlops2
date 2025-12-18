@@ -159,6 +159,7 @@ The deployed app allows users to:
 - Get real-time weekly sales predictions, along with insights and can perform future forcasting
 - Interact with the model without running code locally
 ![App demo (online-video-cutter com) (online-video-cutter com) (2)](https://github.com/user-attachments/assets/c88a0381-c552-4089-bb6f-a088417e9042)
+App Link : https://huggingface.co/spaces/abhinav965108/WalmartSalesPrediction_mlops
 
 
 
@@ -167,34 +168,8 @@ Deployment helped uncover practical issues that are not visible during notebook 
 ---
 
 ## **Project Structure**
-.
-├── .streamlit
-│   └── config.toml
-├── app
-    ├── app.py
-    ├── app_v2.py
-    ├── model.pkl
-    ├── requirements.txt
-│
-├── data
-│   ├── script.py
-│   ├── following_my_model.py
-│   ├── mlflow_experiments.py
-│   ├── mlflow_project_EDA.py
-│   └── walmart_dataset_processed.csv
-│
-├── mlruns
-│   ├── 0
-│   │   ├── 16e45d4e9c48b6e8450c9b7d4a9f6e6f
-│   │   │   └── artifacts
-│   │   ├── 1a23bc45678de9f0123456789abcdef0
-│   │   │   └── artifacts
-|   |   ├── And many more
-          
-│
-├── Dockerfile
-├── README.md
-└── model_registry
+
+<img width="691" height="803" alt="image" src="https://github.com/user-attachments/assets/1e7867b5-57de-44a1-b159-b0302d1a3ef4" />
 
 
 ## **Key Learnings**
