@@ -1,4 +1,4 @@
-const API_URL = "https://walmart-sales-forecasting-mlops2.onrender.com/predict";
+const API_URL = "https://walmart-sales-forecasting-mlops2.onrender.com/predict"
 
 const upload = document.getElementById("csvUpload")
 
