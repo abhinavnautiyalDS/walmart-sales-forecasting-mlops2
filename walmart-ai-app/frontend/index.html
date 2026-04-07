@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Walmart Sales Predictor</title>
+
+<link rel="stylesheet" href="style.css">
+<script src="https://cdn.plot.ly/plotly-2.30.0.min.js"></script>
+</head>
+
+<body>
+
+<div class="sidebar">
+
+<h2>⚙ Configuration</h2>
+
+<label>Upload Store CSV</label>
+<input type="file" id="csvUpload">
+
+<button id="downloadTemplate">
+Download Template
+</button>
+
+</div>
+
+<div class="main">
+
+<header class="hero">
+<h1>Walmart Sales Predictor</h1>
+<p>Machine Learning Forecasting & Analytics Dashboard</p>
+</header>
+
+<div class="tabs">
+
+<button class="tab active" data-tab="overview">Executive Overview</button>
+<button class="tab" data-tab="analysis">Deep Dive Analysis</button>
+<button class="tab" data-tab="forecast">Future Forecast</button>
+
+</div>
+
+<div class="tab-content active" id="overview">
+
+<div class="metrics">
+
+<div class="metric">
+<h3>Total Revenue</h3>
+<p id="totalSales">$0</p>
+</div>
+
+<div class="metric">
+<h3>Avg Weekly Sales</h3>
+<p id="avgSales">$0</p>
+</div>
+
+<div class="metric">
+<h3>Peak Sales</h3>
+<p id="peakSales">$0</p>
+</div>
+
+</div>
+
+<div id="salesChart"></div>
+
+</div>
+
+<div class="tab-content" id="analysis">
+
+<div id="deptChart"></div>
+<div id="storeChart"></div>
+
+</div>
+
+<div class="tab-content" id="forecast">
+
+<label>Forecast Weeks</label>
+<input type="range" id="weeks" min="4" max="52" value="12">
+
+<button id="forecastBtn">Generate Forecast</button>
+
+<div id="forecastChart"></div>
+
+</div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
