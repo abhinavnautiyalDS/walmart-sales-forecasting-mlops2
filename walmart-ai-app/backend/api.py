@@ -1,66 +1,69 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
-import pickle
 import pandas as pd
 import numpy as np
+import pickle
 import os
 
-# --------------------------------------------------
-# Create FastAPI App
-# --------------------------------------------------
+# ---------------------------------------------------
+# Initialize FastAPI
+# ---------------------------------------------------
 
 app = FastAPI(title="Walmart Sales Prediction API")
 
-
-# --------------------------------------------------
-# Enable CORS (Important for GitHub Pages frontend)
-# --------------------------------------------------
+# ---------------------------------------------------
+# Enable CORS (required for GitHub Pages frontend)
+# ---------------------------------------------------
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],   # allow requests from any frontend
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-
-# --------------------------------------------------
-# Load Model
-# --------------------------------------------------
+# ---------------------------------------------------
+# Load trained model
+# ---------------------------------------------------
 
 MODEL_PATH = os.path.join(os.path.dirname(__file__), "model1.pkl")
 
 with open(MODEL_PATH, "rb") as f:
     model = pickle.load(f)
 
+print("Model loaded successfully")
 
-# --------------------------------------------------
-# Root Endpoint
-# --------------------------------------------------
+# ---------------------------------------------------
+# Health check endpoint
+# ---------------------------------------------------
 
 @app.get("/")
 def home():
-    return {
-        "message": "Walmart Sales Prediction API is running"
-    }
+    return {"message": "Walmart Sales Prediction API running"}
 
-
-# --------------------------------------------------
-# Prediction Endpoint
-# --------------------------------------------------
+# ---------------------------------------------------
+# Prediction endpoint
+# ---------------------------------------------------
 
 @app.post("/predict")
-def predict(data: list):
+async def predict(request: Request):
 
     try:
 
+        # Receive JSON from frontend
+        data = await request.json()
+
+        if not isinstance(data, list):
+            return {"error": "Input must be a list of records"}
+
         df = pd.DataFrame(data)
 
-        # Convert numeric columns safely
+        # Convert numeric columns
         for col in df.columns:
             df[col] = pd.to_numeric(df[col], errors="ignore")
 
+        # Run model prediction
         predictions = model.predict(df)
 
         df["prediction"] = predictions
@@ -69,6 +72,4 @@ def predict(data: list):
 
     except Exception as e:
 
-        return {
-            "error": str(e)
-        }
+        return {"error": str(e)}
